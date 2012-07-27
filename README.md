@@ -1,4 +1,4 @@
 knockout
 ========
 
-knocout demo projects for apps team
+knockout demo projects for apps team
