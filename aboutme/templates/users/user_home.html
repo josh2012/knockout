@@ -1,0 +1,40 @@
+{% extends "common/base/site_base.html" %}
+{% block content %}
+    Welcome, <strong data-bind="text: fullName"></strong>
+    <!-- Tabs -->
+    <ul class="folders" data-bind="foreach: tabs">
+        <li data-bind="text: $data, css: {selected: $data == $root.selectedTab()}, click: $root.selectTab"></li>
+    </ul>
+
+    <!-- Profile -->
+    <div data-bind="visible: 'Profile' == $root.selectedTab()">
+        <h2 data-bind="text: $root.selectedTab"></h2>
+        <p><label>First Name : <input data-bind="value: firstName" /></label></p>
+        <p><label>Last Name : <input data-bind="value: lastName" /></label></p>
+        <p><label>Email : <input data-bind="value: email" /></label></p>
+        <p>
+            <button data-bind="click: updateProfile">Save</button>
+        </p>
+    </div>
+
+    <!-- Books -->
+    <div data-bind="visible: 'Books' == $root.selectedTab()">
+        <h2 data-bind="text: $root.selectedTab"></h2>
+        <ul data-bind="foreach: books">
+            <li>
+                <input data-bind="value: name" />
+                by
+                <input data-bind="value: author" />
+                on
+                <select data-bind="options: $root.subjects, value: 'short', optionsText: 'name'"></select>
+                [ <strong data-bind="text: abbr"></strong> ]
+            </li>
+        </ul>
+        <button data-bind="click: addBook, enable: books().length < 5">Add another Book</button>
+        <br /><br /><br />
+        <strong>Total Books = </strong><strong data-bind="text: books().length"></strong>
+    </div>
+{% endblock %}
+{% block page_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/user-ko.js"></script>
+{% endblock %}

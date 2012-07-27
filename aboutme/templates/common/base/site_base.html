@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}{{ site.domain|capfirst }} - {{ site.tagline }}{% endblock %}</title>
+    {% block site_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/knockout-2.1.0.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/sammy-latest.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/knockout.mapping-latest.js"></script>
+    {% endblock %}
+    {% block site_css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    {% endblock %}
+    {% block page_css %}{% endblock %}
+</head>
+<body>
+    <div id="header">
+        {% block header %}
+            {% include "common/includes/header.html" %}
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div id="footer">
+        {% block footer %}
+            <hr />
+        {% endblock %}
+        {% block page_js %}{% endblock %}
+    </div>
+</body>
+</html>
